@@ -56,13 +56,13 @@ const Home = () => {
       </section>
 
       {/* Featured Products Section */}
-      <section className="py-16 bg-gray-50 dark:bg-gray-800">
+      <section id="products" className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Featured Products
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               Handpicked products that our customers love. Quality guaranteed with every purchase.
             </p>
           </div>
@@ -73,12 +73,12 @@ const Home = () => {
             </div>
           ) : error ? (
             <div className="text-center">
-              <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg p-6 max-w-md mx-auto">
+              <div className="bg-red-50 border border-red-200 rounded-lg p-6 max-w-md mx-auto">
                 <svg className="w-12 h-12 text-red-400 mx-auto mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
                 </svg>
-                <h3 className="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">Error Loading Products</h3>
-                <p className="text-red-600 dark:text-red-300">{error}</p>
+                <h3 className="text-lg font-semibold text-red-800 mb-2">Error Loading Products</h3>
+                <p className="text-red-600">{error}</p>
               </div>
             </div>
           ) : (
@@ -88,13 +88,13 @@ const Home = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-16 bg-white dark:bg-gray-900">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Why Choose Us
             </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
               We're committed to providing the best shopping experience with premium service and quality products.
             </p>
           </div>
@@ -107,8 +107,8 @@ const Home = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Fast Delivery</h3>
-              <p className="text-gray-600 dark:text-gray-300">Get your orders delivered within 24-48 hours with our express shipping service.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Fast Delivery</h3>
+              <p className="text-gray-600">Get your orders delivered within 24-48 hours with our express shipping service.</p>
             </div>
 
             {/* Feature 2 */}
@@ -118,8 +118,8 @@ const Home = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Quality Guaranteed</h3>
-              <p className="text-gray-600 dark:text-gray-300">All our products are carefully selected and tested to ensure the highest quality.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Quality Guaranteed</h3>
+              <p className="text-gray-600">All our products are carefully selected and tested to ensure the highest quality.</p>
             </div>
 
             {/* Feature 3 */}
@@ -129,8 +129,8 @@ const Home = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 10h18M7 15h1m4 0h1m-7 4h12a3 3 0 003-3V8a3 3 0 00-3-3H6a3 3 0 00-3 3v8a3 3 0 003 3z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">Secure Payment</h3>
-              <p className="text-gray-600 dark:text-gray-300">Your payment information is protected with bank-level security encryption.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">Secure Payment</h3>
+              <p className="text-gray-600">Your payment information is protected with bank-level security encryption.</p>
             </div>
 
             {/* Feature 4 */}
@@ -140,15 +140,15 @@ const Home = () => {
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192L5.636 18.364M12 2.25a9.75 9.75 0 109.75 9.75A9.75 9.75 0 0012 2.25z" />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">24/7 Support</h3>
-              <p className="text-gray-600 dark:text-gray-300">Our customer support team is available round the clock to help you.</p>
+              <h3 className="text-xl font-semibold text-gray-900 mb-3">24/7 Support</h3>
+              <p className="text-gray-600">Our customer support team is available round the clock to help you.</p>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-16 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-700 dark:to-purple-700">
+      <section className="py-16 bg-gradient-to-r from-indigo-600 to-purple-600">
         <div className="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8">
           <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
             Ready to Start Shopping?

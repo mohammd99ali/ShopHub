@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { fetchProductById, productsAPI } from '../../services/api';
+import { productsAPI } from '../../services/api';
 
 const initialState = {
     products: [],
@@ -29,8 +29,8 @@ export const getProductById = createAsyncThunk(
     'products/getProductById',
     async (id, { rejectWithValue }) => {
         try {
-            const response = await fetchProductById(id);
-            return response;
+            const response = await productsAPI.getProduct(id);
+            return response.data;
         } catch (error) {
             return rejectWithValue(error.message);
         }
