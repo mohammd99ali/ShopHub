@@ -20,12 +20,14 @@ connectDB();
 // Security middleware
 app.use(helmet());
 
-// CORS configuration - Allow all origins
+// CORS configuration - Allow all origins with explicit settings
 app.use(cors({
-    origin: true, // Allow all origins
-    credentials: true,
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
+    origin: '*', // Allow all origins
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+    allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With', 'Accept', 'Origin'],
+    credentials: false, // Set to false when using origin: '*'
+    preflightContinue: false,
+    optionsSuccessStatus: 204
 }));
 
 // Rate limiting
@@ -80,7 +82,7 @@ app.listen(PORT, () => {
     console.log(`🚀 Server running on port ${PORT}`);
     console.log(`📱 Frontend URL: ${process.env.FRONTEND_URL || 'http://localhost:5173'}`);
     console.log(`🔗 API URL: http://localhost:${PORT}/api`);
-    console.log(`🌐 CORS: All origins allowed`);
+    console.log(`🌐 CORS: All origins allowed (*)`);
 });
 
 module.exports = app;
