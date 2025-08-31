@@ -50,24 +50,6 @@ react-ecommerce/
 - **Backend**: Node.js, Express.js, MongoDB
 - **Authentication**: JWT
 
-## 🔧 Configuration
-
-### Environment Variables
-
-Create `.env` files for different environments:
-
-**Development** (`.env.development`):
-
-```
-VITE_API_URL=http://localhost:5000
-```
-
-**Production** (`.env.production`):
-
-```
-VITE_API_URL=https://your-backend-url.com
-```
-
 ## 🚀 Features
 
 - ✅ User authentication (login/logout)
