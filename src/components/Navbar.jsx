@@ -18,13 +18,7 @@ const Navbar = () => {
     setIsMenuOpen(false);
   };
 
-  const scrollToProducts = () => {
-    const productsSection = document.getElementById('products');
-    if (productsSection) {
-      productsSection.scrollIntoView({ behavior: 'smooth' });
-    }
-    setIsMenuOpen(false);
-  };
+
 
   return (
     <nav className="bg-gradient-to-r from-indigo-600 via-purple-600 to-indigo-600 shadow-lg backdrop-blur-sm border-b border-white/10">
@@ -45,12 +39,9 @@ const Navbar = () => {
             <Link to="/" className="text-white/90 hover:text-white transition-colors duration-200 font-medium">
               Home
             </Link>
-            <button
-              onClick={scrollToProducts}
-              className="text-white/90 hover:text-white transition-colors duration-200 font-medium"
-            >
+            <Link to="/products" className="text-white/90 hover:text-white transition-colors duration-200 font-medium">
               Products
-            </button>
+            </Link>
             <Link to="/cart" className="relative text-white/90 hover:text-white transition-colors duration-200 font-medium">
               Cart
               {cartItemCount > 0 && (
@@ -116,12 +107,13 @@ const Navbar = () => {
               >
                 Home
               </Link>
-              <button
-                onClick={scrollToProducts}
-                className="text-left text-white hover:text-gray-200 transition-colors duration-200 font-medium"
+              <Link
+                to="/products"
+                className="text-white hover:text-gray-200 transition-colors duration-200 font-medium"
+                onClick={() => setIsMenuOpen(false)}
               >
                 Products
-              </button>
+              </Link>
               <Link
                 to="/cart"
                 className="text-white hover:text-gray-200 transition-colors duration-200 font-medium flex items-center"

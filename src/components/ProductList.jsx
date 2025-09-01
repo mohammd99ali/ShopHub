@@ -179,14 +179,17 @@ const ProductList = ({ onEditProduct, refreshKey = 0 }) => {
               </tr>
             ) : (
               filteredProducts.map((product) => (
-                <tr key={product.id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
+                <tr key={product.id || product._id} className="hover:bg-gray-50 dark:hover:bg-gray-700">
                   <td className="px-6 py-4 whitespace-nowrap">
                     <div className="flex items-center">
                       <div className="flex-shrink-0 h-12 w-12">
                         <img
                           className="h-12 w-12 rounded-lg object-cover"
-                          src={product.images?.[0] || 'https://via.placeholder.com/48'}
+                          src={product.images?.[0] || 'https://via.placeholder.com/48?text=No+Image'}
                           alt={product.name}
+                          onError={(e) => {
+                            e.target.src = 'https://via.placeholder.com/48?text=No+Image';
+                          }}
                         />
                       </div>
                       <div className="ml-4">
@@ -246,7 +249,7 @@ const ProductList = ({ onEditProduct, refreshKey = 0 }) => {
                         Edit
                       </button>
                       <button
-                        onClick={() => handleDelete(product.id)}
+                        onClick={() => handleDelete(product.id || product._id)}
                         className="text-red-600 dark:text-red-400 hover:text-red-900 dark:hover:text-red-300"
                       >
                         Delete

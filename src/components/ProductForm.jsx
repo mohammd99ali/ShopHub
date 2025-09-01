@@ -106,13 +106,16 @@ const ProductForm = ({ product, onClose, onSuccess }) => {
     }));
   };
 
-  const handleImageChange = (e) => {
-    const files = Array.from(e.target.files);
-    const imageUrls = files.map(file => URL.createObjectURL(file));
-    setFormData(prev => ({
-      ...prev,
-      images: [...prev.images, ...imageUrls]
-    }));
+  const [imageUrl, setImageUrl] = useState('');
+
+  const handleAddImageUrl = () => {
+    if (imageUrl.trim()) {
+      setFormData(prev => ({
+        ...prev,
+        images: [...prev.images, imageUrl.trim()]
+      }));
+      setImageUrl('');
+    }
   };
 
   const removeImage = (index) => {
@@ -324,15 +327,24 @@ const ProductForm = ({ product, onClose, onSuccess }) => {
           {/* Images */}
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-              Product Images
+              Product Images (URLs)
             </label>
-            <input
-              type="file"
-              multiple
-              accept="image/*"
-              onChange={handleImageChange}
-              className="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
-            />
+            <div className="flex gap-2 mb-4">
+              <input
+                type="url"
+                value={imageUrl}
+                onChange={(e) => setImageUrl(e.target.value)}
+                placeholder="Enter image URL (e.g., https://example.com/image.jpg)"
+                className="flex-1 px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500 dark:bg-gray-700 dark:text-white"
+              />
+              <button
+                type="button"
+                onClick={handleAddImageUrl}
+                className="px-4 py-2 bg-indigo-600 dark:bg-indigo-500 text-white rounded-md hover:bg-indigo-700 dark:hover:bg-indigo-600"
+              >
+                Add Image
+              </button>
+            </div>
             {formData.images.length > 0 && (
               <div className="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
                 {formData.images.map((image, index) => (
@@ -341,18 +353,27 @@ const ProductForm = ({ product, onClose, onSuccess }) => {
                       src={image}
                       alt={`Product ${index + 1}`}
                       className="w-full h-24 object-cover rounded-lg"
+                      onError={(e) => {
+                        e.target.src = 'https://via.placeholder.com/96?text=Invalid+URL';
+                      }}
                     />
                     <button
                       type="button"
                       onClick={() => removeImage(index)}
-                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm"
+                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm hover:bg-red-600"
                     >
                       ×
                     </button>
+                    <div className="absolute bottom-0 left-0 right-0 bg-black bg-opacity-50 text-white text-xs p-1 rounded-b-lg truncate">
+                      {image}
+                    </div>
                   </div>
                 ))}
               </div>
             )}
+            <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
+              Add image URLs one by one. Make sure the URLs point directly to image files (jpg, png, gif, etc.)
+            </p>
           </div>
 
           {/* Features */}

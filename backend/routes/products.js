@@ -179,10 +179,9 @@ const updateProduct = async (req, res) => {
 // @access  Private/Admin
 const deleteProduct = async (req, res) => {
   try {
-    const product = await Product.findById(req.params.id);
+    const deleted = await Product.findByIdAndDelete(req.params.id);
 
-    if (product) {
-      await product.remove();
+    if (deleted) {
       res.json({ message: 'Product removed' });
     } else {
       res.status(404).json({ message: 'Product not found' });

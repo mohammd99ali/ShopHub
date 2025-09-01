@@ -1,6 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
+// Load initial cart state from localStorage if available
+const persistedCart = (() => {
+    try {
+        const raw = localStorage.getItem('cart');
+        return raw ? JSON.parse(raw) : null;
+    } catch (_) {
+        return null;
+    }
+})();
+
+const initialState = persistedCart || {
     items: [],
     total: 0,
     itemCount: 0,

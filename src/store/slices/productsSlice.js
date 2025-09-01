@@ -144,11 +144,12 @@ const productsSlice = createSlice({
             })
             .addCase(updateProduct.fulfilled, (state, action) => {
                 state.loading = false;
-                const index = state.products.findIndex(p => p.id === action.payload.id);
+                const updatedId = action.payload.id || action.payload._id;
+                const index = state.products.findIndex(p => (p.id || p._id) === updatedId);
                 if (index !== -1) {
                     state.products[index] = action.payload;
                 }
-                if (state.product && state.product.id === action.payload.id) {
+                if (state.product && (state.product.id || state.product._id) === updatedId) {
                     state.product = action.payload;
                 }
             })
@@ -162,8 +163,8 @@ const productsSlice = createSlice({
             })
             .addCase(deleteProduct.fulfilled, (state, action) => {
                 state.loading = false;
-                state.products = state.products.filter(p => p.id !== action.payload);
-                if (state.product && state.product.id === action.payload) {
+                state.products = state.products.filter(p => (p.id || p._id) !== action.payload);
+                if (state.product && (state.product.id || state.product._id) === action.payload) {
                     state.product = null;
                 }
             })

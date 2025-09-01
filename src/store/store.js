@@ -12,3 +12,14 @@ export const store = configureStore({
 });
 
 export default store;
+
+// Persist cart to localStorage on changes
+store.subscribe(() => {
+    try {
+        const state = store.getState();
+        const cartState = state.cart;
+        localStorage.setItem('cart', JSON.stringify(cartState));
+    } catch (_) {
+        // Ignore write errors (e.g., private mode)
+    }
+});

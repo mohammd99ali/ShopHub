@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { getProducts } from '../store/slices/productsSlice';
 import ProductGrid from '../components/ProductGrid';
 import Loader from '../components/Loader';
@@ -39,9 +40,9 @@ const Home = () => {
               Shop the latest trends with premium quality products. Fast delivery, secure payments, and exceptional customer service.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <button className="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+              <Link to="/products" className="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 text-center">
                 Shop Now
-              </button>
+              </Link>
               <button className="border-2 border-white/30 text-white hover:bg-white/10 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 backdrop-blur-sm">
                 Learn More
               </button>
@@ -156,9 +157,9 @@ const Home = () => {
           <p className="text-xl text-white/90 mb-8">
             Join thousands of satisfied customers and discover amazing products today.
           </p>
-          <button className="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105">
+          <Link to="/products" className="bg-white text-indigo-600 hover:bg-gray-100 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 shadow-lg hover:shadow-xl transform hover:scale-105 inline-block">
             Browse All Products
-          </button>
+          </Link>
         </div>
       </section>
     </div>

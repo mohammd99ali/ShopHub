@@ -9,6 +9,25 @@ const initialState = {
     isAuthenticated: !!localStorage.getItem('token'),
 };
 
+export const register = createAsyncThunk(
+    'auth/register',
+    async (userData, { rejectWithValue }) => {
+        try {
+            const response = await authAPI.register(userData);
+
+            // Store token in localStorage
+            localStorage.setItem('token', response.data.token);
+            localStorage.setItem('user', JSON.stringify(response.data));
+
+            return response.data;
+        } catch (error) {
+            // Return the actual error from the backend
+            const errorMessage = error.response?.data?.message || error.message || 'Registration failed';
+            return rejectWithValue(errorMessage);
+        }
+    }
+);
+
 export const login = createAsyncThunk(
     'auth/login',
     async (credentials, { rejectWithValue }) => {
@@ -64,6 +83,20 @@ const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
+            .addCase(register.pending, (state) => {
+                state.loading = true;
+                state.error = null;
+            })
+            .addCase(register.fulfilled, (state, action) => {
+                state.loading = false;
+                state.user = action.payload;
+                state.token = action.payload.token;
+                state.isAuthenticated = true;
+            })
+            .addCase(register.rejected, (state, action) => {
+                state.loading = false;
+                state.error = action.payload;
+            })
             .addCase(login.pending, (state) => {
                 state.loading = true;
                 state.error = null;
